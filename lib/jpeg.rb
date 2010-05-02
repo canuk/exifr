@@ -48,7 +48,19 @@ module EXIFR
       h.merge!(exif) if exif?
       h
     end
+    
+    def gps
+      [self.gps_lat, self.gps_lng]
+    end
+      
+    def gps_lat
+      self.gps_latitude[0].to_f+self.gps_latitude[1].to_f/60+self.gps_latitude[2].to_f/3600
+    end
 
+    def gps_lng
+      self.gps_longitude[0].to_f+self.gps_longitude[1].to_f/60+self.gps_longitude[2].to_f/3600
+    end  
+      
     # Dispatch to EXIF.  When no EXIF data is available but the
     # +method+ does exist for EXIF data +nil+ will be returned.
     def method_missing(method, *args)

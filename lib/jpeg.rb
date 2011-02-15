@@ -48,17 +48,29 @@ module EXIFR
       h.merge!(exif) if exif?
       h
     end
+
+    def gps?
+      gps_lat && gps_lng
+    end
     
     def gps
       [self.gps_lat, self.gps_lng]
     end
-      
+    
     def gps_lat
-      self.gps_latitude[0].to_f+self.gps_latitude[1].to_f/60+self.gps_latitude[2].to_f/3600
+      if self.gps_latitude.nil? or self.gps_latitude.length < 2
+        nil
+      else
+        self.gps_latitude[0].to_f+self.gps_latitude[1].to_f/60+self.gps_latitude[2].to_f/3600
+      end
     end
 
     def gps_lng
-      self.gps_longitude[0].to_f+self.gps_longitude[1].to_f/60+self.gps_longitude[2].to_f/3600
+      if self.gps_longitude.nil? or self.gps_longitude.length < 2
+        nil
+      else
+        self.gps_longitude[0].to_f+self.gps_longitude[1].to_f/60+self.gps_longitude[2].to_f/3600
+      end
     end  
       
     # Dispatch to EXIF.  When no EXIF data is available but the

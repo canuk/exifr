@@ -9,9 +9,10 @@ EXIF Reader is a module to read metadata from JPEG and TIFF images.
   EXIFR::JPEG.new('IMG_6841.JPG').date_time           # => Fri Feb 09 16:48:54 +0100 2007
   EXIFR::JPEG.new('IMG_6841.JPG').exposure_time.to_s  # => "1/15"
   EXIFR::JPEG.new('IMG_6841.JPG').f_number.to_f       # => 2.0
-  EXIFR::JPEG.new('IMG_6841.JPG').gps                     # => [37.294112,-122.789422]
-  EXIFR::JPEG.new('IMG_6841.JPG').gps_lat                # => 37.294112
-  EXIFR::JPEG.new('IMG_6841.JPG').gps_lng               # =>-122.789422
+  EXIFR::JPEG.new('IMG_6841.JPG').gps?                # => true
+  EXIFR::JPEG.new('IMG_6841.JPG').gps                 # => [37.294112,-122.789422]
+  EXIFR::JPEG.new('IMG_6841.JPG').gps_lat             # => 37.294112
+  EXIFR::JPEG.new('IMG_6841.JPG').gps_lng             # =>-122.789422
 
 
   EXIFR::TIFF.new('DSC_0218.TIF').width               # => 3008

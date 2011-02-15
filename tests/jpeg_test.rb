@@ -71,9 +71,32 @@ class JPEGTest < Test::Unit::TestCase
     assert j.respond_to?('date_time')
     assert_not_nil j.date_time
     assert_kind_of Time, j.date_time
-
     assert_not_nil j.f_number
     assert_kind_of Rational, j.f_number
+  end
+  
+  def test_geolocation
+    j = JPEG.new(f('iPhone-gps.jpg'))
+    assert j.methods.include?('gps_latitude')    
+    assert j.gps_latitude[0].to_f ==37.0
+    assert j.gps_latitude[1].to_f ==46.0
+    assert j.gps_latitude[2].to_f ==43.024
+
+    assert j.methods.include?('gps_longitude')
+    assert j.gps_longitude[0].to_f ==122.0
+    assert j.gps_longitude[1].to_f ==26.0
+    assert j.gps_longitude[2].to_f ==20.211
+    
+    assert j.methods.include?('gps_lat')
+    assert j.methods.include?('gps_lng')
+    assert j.gps_lat.to_s == '37.7786177777778'
+    assert j.gps_lng.to_s == '122.4389475'
+     
+    assert j.methods.include?('gps')
+    gps=j.gps
+    assert j.gps[0].to_s == '37.7786177777778'
+    assert j.gps[1].to_s == '122.4389475'
+    
   end
 
   def test_no_method_error

@@ -61,7 +61,9 @@ module EXIFR
       if self.gps_latitude.nil? or self.gps_latitude.length < 2
         nil
       else
-        self.gps_latitude[0].to_f+self.gps_latitude[1].to_f/60+self.gps_latitude[2].to_f/3600
+        value = self.gps_latitude[0].to_f+self.gps_latitude[1].to_f/60+self.gps_latitude[2].to_f/3600
+        value = -value if self.gps_latitude_ref.to_s == "S"
+        value
       end
     end
 
@@ -69,7 +71,9 @@ module EXIFR
       if self.gps_longitude.nil? or self.gps_longitude.length < 2
         nil
       else
-        self.gps_longitude[0].to_f+self.gps_longitude[1].to_f/60+self.gps_longitude[2].to_f/3600
+        value = self.gps_longitude[0].to_f+self.gps_longitude[1].to_f/60+self.gps_longitude[2].to_f/3600
+        value = -value if self.gps_longitude_ref.to_s == "W"
+        value
       end
     end  
       
